@@ -1,0 +1,45 @@
+<!-- modificacion de pagina html -->
+
+<h1>Agregar producto</h1>
+<hr>
+
+<!-- Una vez construido el formulario, se añade al html por medio de un [formGroup], mandando a llamar al formulario, en este caso llamado myForm -->
+<form [formGroup]="myForm">
+
+  <div class="row g-3 align-items-center mb-3">
+
+    <div class="col-auto">
+      <label>Nombre:</label>
+    </div>
+
+    <div class="col-auto">
+
+      <!-- Conexión del formulario con el campo "name" -->
+      <input formControlName="name" type="text" class="form-control">
+
+    </div>
+
+    <div class="col-auto">
+      <!-- Conexión de la directiva personalizada con el atributo de html "span" -->
+      <span customLabel
+        [color]="color"
+        [errors]="myForm.get('name')?.errors"
+      >Temporal</span>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <!-- Colocando el evento (click) en el botón, se va a tener el cambio de color hexadecimal -->
+      <button (click)="changeColor()" class="btn btn-primary">
+        Cambiar color
+      </button>
+    </div>
+  </div>
+
+
+</form>
+
+<pre class="mt-5">{{ myForm.get('name')?.errors | json }}</pre>
+<p>Color: {{ color }}</p>
